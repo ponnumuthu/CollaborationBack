@@ -2,11 +2,13 @@ package com.second.CollaborationBack.model;
 
 import java.util.Date;
 
+import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 import org.springframework.stereotype.Component;
 
@@ -22,11 +24,12 @@ public class Comment {
 	
 	private String forumId;
 	private String userId;
+	private String userName;
 	private String commends;
-	private Date date;
 	
-	
-	
+	@Generated(value = { "" })
+	@Temporal(javax.persistence.TemporalType.DATE)
+	private Date date = new java.sql.Date(new java.util.Date().getTime());	
 	
 	public Date getDate() {
 		return date;
@@ -57,6 +60,12 @@ public class Comment {
 	}
 	public void setCommends(String commends) {
 		this.commends = commends;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	
 }

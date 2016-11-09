@@ -19,11 +19,13 @@ import com.second.CollaborationBack.DAO.BlogDAOImpl;
 import com.second.CollaborationBack.DAO.CommentDAOImpl;
 import com.second.CollaborationBack.DAO.ForumDAOImpl;
 import com.second.CollaborationBack.DAO.FriendListDAOImpl;
+import com.second.CollaborationBack.DAO.JobDAOImpl;
 import com.second.CollaborationBack.DAO.UserDAOImpl;
 import com.second.CollaborationBack.model.Blog;
 import com.second.CollaborationBack.model.Comment;
 import com.second.CollaborationBack.model.Forum;
 import com.second.CollaborationBack.model.FriendList;
+import com.second.CollaborationBack.model.Jobs;
 import com.second.CollaborationBack.model.User;
 
 @Configuration
@@ -41,7 +43,7 @@ public class AppConfig {
 		dataSource.setUsername("sa");
 		dataSource.setPassword("");
 		return dataSource;
-		}
+		} 
 	
 	private Properties getHibernateProperties(){
 		Properties properties = new Properties();
@@ -64,7 +66,7 @@ public class AppConfig {
 		sessionBuilder.addAnnotatedClass(Forum.class);
 		sessionBuilder.addAnnotatedClass(Comment.class);
 		sessionBuilder.addAnnotatedClass(FriendList.class);
-		
+		sessionBuilder.addAnnotatedClass(Jobs.class);
 		return sessionBuilder.buildSessionFactory();
 		}
 	
@@ -99,5 +101,10 @@ public class AppConfig {
 	@Bean(name="friendlist")
 	public FriendListDAOImpl getFriendDAOImpl(SessionFactory sessionFactory){
 		return new FriendListDAOImpl(sessionFactory);
+	}
+	@Autowired(required=true)
+	@Bean(name="jobs")
+	public JobDAOImpl getJobDAOImpl(SessionFactory sessionFactory){
+		return new JobDAOImpl(sessionFactory);
 	}
 }
